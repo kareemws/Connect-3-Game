@@ -6,15 +6,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.kareemwaleed.connect3.R.id.cellEight;
+import static com.example.kareemwaleed.connect3.R.id.cellFour;
+import static com.example.kareemwaleed.connect3.R.id.cellNine;
 
 public class MainActivity extends AppCompatActivity {
 
     boolean player;
     boolean game;
-    ArrayList<String> cell;
-    ArrayList<ImageView> yellowCoins;
-    ArrayList<ImageView> redCoins;
+    Map<String, ImageView> cells;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,243 +30,142 @@ public class MainActivity extends AppCompatActivity {
     {
         game = true;
         player = true;
-        cell = new ArrayList<>();
-        for(int i=0; i < 9; i++)
-            cell.add(".");
-        redCoins = new ArrayList<>();
-        yellowCoins = new ArrayList<>();
-        ImageView temp;
-
-        temp = (ImageView) findViewById(R.id.cellOneRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellTwoRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellThreeRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellFourRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellFiveRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellSixRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellSevenRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellEightRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellNineRed);
-        temp.setTranslationY(-10000f);
-        redCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellOneYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellTwoYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellThreeYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellFourYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellFiveYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellSixYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellSevenYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellEightYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
-
-        temp = (ImageView) findViewById(R.id.cellNineYellow);
-        temp.setTranslationY(-10000f);
-        yellowCoins.add(temp);
+        cells = new HashMap<String, ImageView>();
+        cells.put("cellOne", (ImageView)findViewById(R.id.cellOne));
+        cells.put("cellTwo", (ImageView)findViewById(R.id.cellTwo));
+        cells.put("cellThree", (ImageView)findViewById(R.id.cellThree));
+        cells.put("cellFour", (ImageView)findViewById(cellFour));
+        cells.put("cellFive", (ImageView)findViewById(R.id.cellFive));
+        cells.put("cellSix", (ImageView)findViewById(R.id.cellSix));
+        cells.put("cellSeven", (ImageView)findViewById(R.id.cellSeven));
+        cells.put("cellEight", (ImageView)findViewById(cellEight));
+        cells.put("cellNine", (ImageView)findViewById(cellNine));
     }
 
-    public void cellOneResponse(View view)
+    public void cellResponse(View view)
     {
-        if(!validate(0))
+        if(!validate(view))
             return;
         if(player && game)
-            redPlay(0);
+            redPlay(view);
         else if(!player && game)
-            yellowPlay(0);
+            yellowPlay(view);
         else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "The game is over !!\nReset to play again", Toast.LENGTH_LONG).show();
     }
 
-    public void cellTwoResponse(View view)
-    {
-        if(!validate(1))
-            return;
-        if(player && game)
-            redPlay(1);
-        else if(!player && game)
-            yellowPlay(1);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    public void cellThreeResponse(View view)
-    {
-        if(!validate(2))
-            return;
-        if(player && game)
-            redPlay(2);
-        else if(!player && game)
-            yellowPlay(2);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    public void cellFourResponse(View view)
-    {
-        if(!validate(3))
-            return;
-        if(player && game)
-            redPlay(3);
-        else if(!player && game)
-            yellowPlay(3);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    public void cellFiveResponse(View view)
-    {
-        if(!validate(4))
-            return;
-        if(player && game)
-            redPlay(4);
-        else if(!player && game)
-            yellowPlay(4);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    public void cellSixResponse(View view)
-    {
-        if(!validate(5))
-            return;
-        if(player && game)
-            redPlay(5);
-        else if(!player && game)
-            yellowPlay(5);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    public void cellSevenResponse(View view)
-    {
-        if(!validate(6))
-            return;
-        if(player && game)
-            redPlay(6);
-        else if(!player && game)
-            yellowPlay(6);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    public void cellEightResponse(View view)
-    {
-        if(!validate(7))
-            return;
-        if(player && game)
-            redPlay(7);
-        else if(!player && game)
-            yellowPlay(7);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    public void cellNineResponse(View view)
-    {
-        if(!validate(8))
-            return;
-        if(player && game)
-            redPlay(8);
-        else if(!player && game)
-            yellowPlay(8);
-        else
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
-    }
-
-    private boolean validate(int cellNumber)
+    private boolean validate(View view)
     {
         checkGameOver();
-        if(cell.get(cellNumber) == ".")
+        ImageView temp = (ImageView) view;
+        if(temp.getDrawable() == null)
             return true;
         if(!game)
-            Toast.makeText(getApplicationContext(), "The game is over !!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "The game is over !!\nReset to play again", Toast.LENGTH_LONG).show();
         return false;
     }
 
     private boolean checkRedWin()
     {
-        if(cell.get(0) == "R" && cell.get(3) == "R" && cell.get(6) == "R")
+        if(cells.get("cellOne").getDrawable() != null
+                && cells.get("cellOne").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellFour").getDrawable() != null
+                && cells.get("cellFour").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellSeven").getDrawable() != null
+                && cells.get("cellSeven").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState())
             return true;
-        if(cell.get(1) == "R" && cell.get(4) == "R" && cell.get(7) == "R")
+        if(cells.get("cellTwo").getDrawable() != null
+                && cells.get("cellTwo").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellFive").getDrawable() != null
+                && cells.get("cellFive").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellEight").getDrawable() != null
+                && cells.get("cellEight").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState())
             return true;
-        if(cell.get(2) == "R" && cell.get(5) == "R" && cell.get(8) == "R")
+        if(cells.get("cellThree").getDrawable() != null
+                && cells.get("cellThree").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellSix").getDrawable() != null
+                && cells.get("cellSix").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellNine").getDrawable() != null
+                && cells.get("cellNine").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState())
             return true;
-        if(cell.get(0) == "R" && cell.get(1) == "R" && cell.get(2) == "R")
+        if(cells.get("cellOne").getDrawable() != null
+                && cells.get("cellOne").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellTwo").getDrawable() != null
+                && cells.get("cellTwo").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellThree").getDrawable() != null
+                && cells.get("cellThree").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState())
             return true;
-        if(cell.get(3) == "R" && cell.get(4) == "R" && cell.get(5) == "R")
+        if(cells.get("cellFour").getDrawable() != null
+                && cells.get("cellFour").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellFive").getDrawable() != null
+                && cells.get("cellFive").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellSix").getDrawable() != null
+                && cells.get("cellSix").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState())
             return true;
-        if(cell.get(6) == "R" && cell.get(7) == "R" && cell.get(8) == "R")
+        if(cells.get("cellSeven").getDrawable() != null
+                && cells.get("cellSeven").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellEight").getDrawable() != null
+                && cells.get("cellEight").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState()
+                && cells.get("cellNine").getDrawable() != null
+                && cells.get("cellNine").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.red).getConstantState())
             return true;
         return false;
     }
 
     private boolean checkYellowWin()
     {
-        if(cell.get(0) == "Y" && cell.get(3) == "Y" && cell.get(6) == "Y")
+        if(cells.get("cellOne").getDrawable() != null
+                && cells.get("cellOne").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellFour").getDrawable() != null
+                && cells.get("cellFour").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellSeven").getDrawable() != null
+                && cells.get("cellSeven").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState())
             return true;
-        if(cell.get(1) == "Y" && cell.get(4) == "Y" && cell.get(7) == "Y")
+        if(cells.get("cellTwo").getDrawable() != null
+                && cells.get("cellTwo").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellFive").getDrawable() != null
+                && cells.get("cellFive").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellEight").getDrawable() != null
+                && cells.get("cellEight").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState())
             return true;
-        if(cell.get(2) == "Y" && cell.get(5) == "Y" && cell.get(8) == "Y")
+        if(cells.get("cellThree").getDrawable() != null
+                && cells.get("cellThree").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellSix").getDrawable() != null
+                && cells.get("cellSix").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellNine").getDrawable() != null
+                && cells.get("cellNine").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState())
             return true;
-        if(cell.get(0) == "Y" && cell.get(1) == "Y" && cell.get(2) == "Y")
+        if(cells.get("cellOne").getDrawable() != null
+                && cells.get("cellOne").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellTwo").getDrawable() != null
+                && cells.get("cellTwo").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellThree").getDrawable() != null
+                && cells.get("cellThree").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState())
             return true;
-        if(cell.get(3) == "Y" && cell.get(4) == "Y" && cell.get(5) == "Y")
+        if(cells.get("cellFour").getDrawable() != null
+                && cells.get("cellFour").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellFive").getDrawable() != null
+                && cells.get("cellFive").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellSix").getDrawable() != null
+                && cells.get("cellSix").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState())
             return true;
-        if(cell.get(6) == "Y" && cell.get(7) == "Y" && cell.get(8) == "Y")
+        if(cells.get("cellSeven").getDrawable() != null
+                && cells.get("cellSeven").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellEight").getDrawable() != null
+                && cells.get("cellEight").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState()
+                && cells.get("cellNine").getDrawable() != null
+                && cells.get("cellNine").getDrawable().getConstantState() == getResources().getDrawable(R.drawable.yellow).getConstantState())
             return true;
         return false;
     }
 
-    private void redPlay(int cellNumber)
+    private void redPlay(View view)
     {
-
-        redCoins.get(cellNumber).setTranslationY(0f);
-        cell.set(cellNumber, "R");
+        ImageView cell = (ImageView) view;
+        cell.setTranslationY(-10000f);
+        cell.setImageResource(R.drawable.red);
+        cell.setTranslationY(0f);
+        cells.put(getResources().getResourceEntryName(cell.getId()), (ImageView) view);
         if(checkRedWin())
         {
             Toast.makeText(getApplicationContext(), "Red Player Wins", Toast.LENGTH_LONG).show();
@@ -272,11 +174,14 @@ public class MainActivity extends AppCompatActivity {
         player = false;
     }
 
-    private void yellowPlay(int cellNumber)
+    private void yellowPlay(View view)
     {
 
-        yellowCoins.get(cellNumber).setTranslationY(0f);
-        cell.set(cellNumber, "Y");
+        ImageView cell = (ImageView) view;
+        cell.setTranslationY(-10000f);
+        cell.setImageResource(R.drawable.yellow);
+        cell.setTranslationY(0f);
+        cells.put(getResources().getResourceEntryName(cell.getId()), (ImageView) view);
         if(checkYellowWin())
         {
             Toast.makeText(getApplicationContext(), "Yellow Player Wins", Toast.LENGTH_LONG).show();
@@ -288,9 +193,9 @@ public class MainActivity extends AppCompatActivity {
     private void checkGameOver()
     {
         boolean check = false;
-        for(int i=0; i < 9; i++)
+        for(ImageView value : cells.values())
         {
-            if(cell.get(i) == ".")
+            if(value.getDrawable() == null)
             {
                 check = true;
                 break;
@@ -302,9 +207,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void reset(View view)
     {
-        cell.clear();
-        redCoins.clear();
-        yellowCoins.clear();
+        ImageView temp;
+        for(ImageView value : cells.values())
+            value.setImageDrawable(null);
+        cells.clear();
         prepare();
     }
 }

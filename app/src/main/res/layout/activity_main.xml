@@ -1,263 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.kareemwaleed.connect3.MainActivity">
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/board"
-        android:id="@+id/board" />
+        android:layout_height="0px"
+        android:layout_weight="1">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/red"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/cellFiveRed"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/yellow"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/cellFiveYellow"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/cellFiveShadow"
-        android:onClick="cellFiveResponse"/>
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="reset"
+            android:text="Reset"
+            android:textAllCaps="false"
+            android:textSize="25sp"/>
+    </RelativeLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/red"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/cellFiveRed"
-        android:layout_marginRight="20dp"
-        android:id="@+id/cellFourRed"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/yellow"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/cellFiveYellow"
-        android:layout_marginRight="20dp"
-        android:id="@+id/cellFourYellow"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/cellFiveShadow"
-        android:layout_marginRight="20dp"
-        android:id="@+id/cellFourShadow"
-        android:onClick="cellFourResponse"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="7"
+        android:background="@drawable/board">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/red"
-        android:id="@+id/cellSixRed"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/cellFiveRed"
-        android:layout_marginLeft="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/yellow"
-        android:id="@+id/cellSixYellow"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/cellFiveYellow"
-        android:layout_marginLeft="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/cellSixShadow"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/cellFiveShadow"
-        android:layout_marginLeft="20dp"
-        android:onClick="cellSixResponse"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/red"
-        android:layout_above="@+id/cellFiveRed"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:id="@+id/cellTwoRed" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/yellow"
-        android:layout_above="@+id/cellFiveYellow"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:id="@+id/cellTwoYellow" />
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/cellFiveShadow"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:id="@+id/cellTwoShadow"
-        android:onClick="cellTwoResponse"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/red"
-        android:id="@+id/cellOneRed"
-        android:layout_above="@id/cellFourRed"
-        android:layout_marginBottom="30dp"
-        android:layout_toLeftOf="@id/cellTwoRed"
-        android:layout_marginRight="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/yellow"
-        android:id="@+id/cellOneYellow"
-        android:layout_above="@id/cellFourYellow"
-        android:layout_marginBottom="30dp"
-        android:layout_toLeftOf="@id/cellTwoYellow"
-        android:layout_marginRight="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/cellOneShadow"
-        android:layout_above="@id/cellFourShadow"
-        android:layout_marginBottom="30dp"
-        android:layout_toLeftOf="@id/cellTwoShadow"
-        android:layout_marginRight="20dp"
-        android:onClick="cellOneResponse"/>
+                <ImageView
+                    android:id="@+id/cellOne"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/red"
-        android:id="@+id/cellThreeRed"
-        android:layout_above="@id/cellSixRed"
-        android:layout_marginBottom="30dp"
-        android:layout_toRightOf="@id/cellTwoRed"
-        android:layout_marginLeft="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/yellow"
-        android:id="@+id/cellThreeYellow"
-        android:layout_above="@id/cellSixYellow"
-        android:layout_marginBottom="30dp"
-        android:layout_toRightOf="@id/cellTwoYellow"
-        android:layout_marginLeft="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/cellThreeShadow"
-        android:layout_above="@id/cellSixShadow"
-        android:layout_marginBottom="30dp"
-        android:layout_toRightOf="@id/cellTwoShadow"
-        android:layout_marginLeft="20dp"
-        android:onClick="cellThreeResponse"/>
+                <ImageView
+                    android:id="@+id/cellTwo"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/red"
-        android:id="@+id/cellEightRed"
-        android:layout_below="@id/cellFiveRed"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/yellow"
-        android:id="@+id/cellEightYellow"
-        android:layout_below="@id/cellFiveYellow"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/cellEightShadow"
-        android:layout_below="@id/cellFiveShadow"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="cellEightResponse"/>
+                <ImageView
+                    android:id="@+id/cellThree"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
+            </LinearLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/red"
-        android:id="@+id/cellSevenRed"
-        android:layout_below="@id/cellFourRed"
-        android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@id/cellEightRed"
-        android:layout_marginRight="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/yellow"
-        android:id="@+id/cellSevenYellow"
-        android:layout_below="@id/cellFourYellow"
-        android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@id/cellEightYellow"
-        android:layout_marginRight="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/cellSevenShadow"
-        android:layout_below="@id/cellFourShadow"
-        android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@id/cellEightShadow"
-        android:layout_marginRight="20dp"
-        android:onClick="cellSevenResponse"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/red"
-        android:id="@+id/cellNineRed"
-        android:layout_below="@id/cellSixRed"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/cellEightRed"
-        android:layout_marginLeft="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/yellow"
-        android:id="@+id/cellNineYellow"
-        android:layout_below="@id/cellSixYellow"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/cellEightYellow"
-        android:layout_marginLeft="20dp"/>
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/cellNineShadow"
-        android:layout_below="@id/cellSixShadow"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@id/cellEightShadow"
-        android:layout_marginLeft="20dp"
-        android:onClick="cellNineResponse"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/resetButton"
-        android:text="Reset"
-        android:textAllCaps="false"
-        android:onClick="reset"
-        android:layout_alignParentRight="true"/>
-</RelativeLayout>
+                <ImageView
+                    android:id="@+id/cellFour"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
+
+                <ImageView
+                    android:id="@+id/cellFive"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
+
+                <ImageView
+                    android:id="@+id/cellSix"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/cellSeven"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
+
+                <ImageView
+                    android:id="@+id/cellEight"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
+
+                <ImageView
+                    android:id="@+id/cellNine"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="cellResponse" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
