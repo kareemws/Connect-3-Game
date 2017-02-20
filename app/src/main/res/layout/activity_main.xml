@@ -35,6 +35,34 @@
         android:layout_weight="7"
         android:background="@drawable/board">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/finalDialog"
+            android:visibility="invisible">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Play Again !"
+                android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:textSize="25sp"
+                android:onClick="playAgain"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/playAgain"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:id="@+id/finalDialogText"
+                android:textSize="50sp"
+                android:background="#ffffff"
+                android:layout_centerHorizontal="true"
+                android:textColor="#000000"
+                android:layout_above="@id/playAgain"/>
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

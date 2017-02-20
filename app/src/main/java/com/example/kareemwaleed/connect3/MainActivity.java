@@ -1,9 +1,12 @@
 package com.example.kareemwaleed.connect3;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -60,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView temp = (ImageView) view;
         if(temp.getDrawable() == null)
             return true;
-        if(!game)
-            Toast.makeText(getApplicationContext(), "The game is over !!\nReset to play again", Toast.LENGTH_LONG).show();
         return false;
     }
 
@@ -168,8 +169,8 @@ public class MainActivity extends AppCompatActivity {
         cells.put(getResources().getResourceEntryName(cell.getId()), (ImageView) view);
         if(checkRedWin())
         {
-            Toast.makeText(getApplicationContext(), "Red Player Wins", Toast.LENGTH_LONG).show();
             game = false;
+            finalDialog(1);
         }
         player = false;
     }
@@ -184,8 +185,8 @@ public class MainActivity extends AppCompatActivity {
         cells.put(getResources().getResourceEntryName(cell.getId()), (ImageView) view);
         if(checkYellowWin())
         {
-            Toast.makeText(getApplicationContext(), "Yellow Player Wins", Toast.LENGTH_LONG).show();
             game = false;
+            finalDialog(0);
         }
         player = true;
     }
@@ -202,7 +203,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(!check)
+        {
             game = false;
+            finalDialog(-1);
+        }
     }
 
     public void reset(View view)
@@ -212,5 +216,34 @@ public class MainActivity extends AppCompatActivity {
             value.setImageDrawable(null);
         cells.clear();
         prepare();
+    }
+
+    public void playAgain(View view)
+    {
+        reset(view);
+        View finalDialog = findViewById(R.id.finalDialog);
+        finalDialog.setVisibility(View.INVISIBLE);
+    }
+
+    private void finalDialog(int winner) {
+        RelativeLayout finalDialog = (RelativeLayout) findViewById(R.id.finalDialog);
+        TextView finalDialogText = (TextView) findViewById(R.id.finalDialogText);
+        if (winner == 0)
+        {
+            finalDialog.setBackgroundColor(Color.parseColor("#ffff00"));
+            finalDialogText.setText("The Yellow Player Wins");
+        }
+        else if (winner == 1)
+        {
+            finalDialog.setBackgroundColor(Color.parseColor("#ff0000"));
+            finalDialogText.setText("The Red Player Wins");
+        }
+        else
+        {
+            finalDialog.setBackgroundColor(Color.parseColor("#000000"));
+            finalDialogText.setText("No One Won :(");
+        }
+        finalDialog.setVisibility(View.VISIBLE);
+        finalDialog.bringToFront();
     }
 }
